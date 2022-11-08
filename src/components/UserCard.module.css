@@ -1,0 +1,10 @@
+.card {
+  border: 0.13em solid red;
+  padding: 0.5em 0.5em;
+  margin: 0.6em 0
+}
+
+.userDetails {
+  border: 0.12em solid black;
+  padding: 0.2em;
+}
