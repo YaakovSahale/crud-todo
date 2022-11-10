@@ -6,7 +6,7 @@ const Search = ({ users, searchDisplay, setSearchDisplay }) => {
     const value = e.target.value.toLowerCase();
     if (!value) return setSearchDisplay(users);
     console.log(value);
-    const tempSearchDisplay = searchDisplay.filter((user) =>
+    const tempSearchDisplay = users.filter((user) =>
       user.name.toLowerCase().startsWith(value)
     );
     console.log(tempSearchDisplay);
