@@ -11,7 +11,6 @@ const Search = ({ users, setSearchDisplay }) => {
         user.name.toLowerCase().startsWith(value) ||
         user.email.toLowerCase().startsWith(value)
     );
-    // console.log(user.email.toLowerCase());
     setSearchDisplay(tempSearchDisplay);
   };
 

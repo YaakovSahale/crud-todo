@@ -1,0 +1,11 @@
+.otherDataContainer {
+  background-color: rgb(212, 207, 207);
+  padding: 0.5em;
+  margin: 0.5em 0;
+}
+
+.userDetails {
+  display: flex;
+  justify-content: space-between;
+  width: 88%;
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import UserCard from "./components/UserCard";
-import Search from "./components/Search";
+import UserCard from "./components/userCard/UserCard";
+import Search from "./components/search/Search";
 import axios from "axios";
 import styles from "./App.module.css";
 
