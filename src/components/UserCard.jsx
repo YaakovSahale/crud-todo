@@ -15,15 +15,17 @@ const UserCard = ({ user }) => {
   <article className={styles.card} style={{border: `0.13em solid ${borderColor} `  }}>
       <p>ID : {user.id}</p>
       <p>
-        Name : <span className={styles.userDetails}>{user.name}</span>
+        Name : <span className={styles.nameAndEmail}>{user.name}</span>
       </p>
       <p>
-        Email : <span className={styles.userDetails}>{user.email}</span>
+        Email : <span className={styles.nameAndEmail}>{user.email}</span>
       </p>
-      <div>
-        <button>Other Data</button>
-        <button>Update</button>
-        <button>Delete</button>
+      <div className={styles.btnContainer}>
+        <button className={styles.btn}>Other Data</button>
+        <div>
+        <button className={styles.btn}>Update</button>
+        <button className={styles.btn}>Delete</button>
+        </div>
       </div>
     </article>
   );

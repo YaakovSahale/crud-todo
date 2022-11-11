@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "./Search.module.css";
 
-const Search = ({ users, searchDisplay, setSearchDisplay }) => {
+const Search = ({ users, setSearchDisplay }) => {
   const searchHandle = (e) => {
     const value = e.target.value.toLowerCase();
     if (!value) return setSearchDisplay(users);
     console.log(value);
-    const tempSearchDisplay = users.filter((user) =>
-      user.name.toLowerCase().startsWith(value)
+    const tempSearchDisplay = users.filter(
+      (user) =>
+        user.name.toLowerCase().startsWith(value) ||
+        user.email.toLowerCase().startsWith(value)
     );
-    console.log(tempSearchDisplay);
+    // console.log(user.email.toLowerCase());
     setSearchDisplay(tempSearchDisplay);
   };
 

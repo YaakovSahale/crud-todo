@@ -1,10 +1,18 @@
 .card {
   padding: 0.5em 0.5em;
-  margin: 0.6em 0
-  
+  margin: 0.6em 0;
 }
 
-.userDetails {
+.nameAndEmail {
   border: 0.12em solid black;
   padding: 0.2em;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn{
+padding: 0.3em;
 }

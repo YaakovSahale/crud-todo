@@ -43,7 +43,6 @@ function App() {
       <div className={styles.cardsContainer}>
         <Search
           users={users}
-          searchDisplay={searchDisplay}
           setSearchDisplay={setSearchDisplay}
         />
         {searchDisplay.map((user) => {
