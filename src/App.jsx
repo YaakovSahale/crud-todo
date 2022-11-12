@@ -35,18 +35,14 @@ function App() {
     };
 
     getUsersAndTodos();
-    encapsulateTodosById();
   }, []);
 
   return (
     <div className={styles.App}>
       <div className={styles.cardsContainer}>
-        <Search
-          users={users}
-          setSearchDisplay={setSearchDisplay}
-        />
+        <Search users={users} setSearchDisplay={setSearchDisplay} />
         {searchDisplay.map((user) => {
-          return <UserCard user={user} />;
+          return <UserCard user={user} todos={todos} />;
         })}
       </div>
     </div>

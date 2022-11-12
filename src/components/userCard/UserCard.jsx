@@ -2,10 +2,10 @@ import { useState } from "react";
 import styles from "./UserCard.module.css";
 import OtherData from "../OtherData/OtherData";
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user, todos }) => {
   const [isMouseOverOtherData, setIsMouseOverOtherData] = useState(false);
+  const [isTasksComplete, setIsTasksComplete] = useState(false);
 
-  const borderColor = "red";
   const btnContainer_row = {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -15,10 +15,24 @@ const UserCard = ({ user }) => {
     flexDirection: "column",
   };
 
+  const checkIfTasksComplete = () => {
+    let totalTasksNum = 0;
+    const completedTasks = todos.map((todo) => {
+      if (todo.userId !== user.id) return;
+      totalTasksNum++;
+      if (!todo.completed) return;
+      return true;
+    });
+
+    if (totalTasksNum === completedTasks.length) setIsTasksComplete(true);
+  };
+
+  checkIfTasksComplete();
+
   return (
     <article
       className={styles.card}
-      style={{ border: `0.13em solid ${borderColor} ` }}
+      style={{ border: `0.13em solid ${isTasksComplete ? "green" : "red"} ` }}
     >
       <p>ID : {user.id}</p>
       <div className={styles.userDetails}>
