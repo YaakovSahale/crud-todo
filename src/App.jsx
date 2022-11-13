@@ -42,7 +42,14 @@ function App() {
       <div className={styles.cardsContainer}>
         <Search users={users} setSearchDisplay={setSearchDisplay} />
         {searchDisplay.map((user) => {
-          return <UserCard user={user} todos={todos} />;
+          return (
+            <UserCard
+              user={user}
+              todos={todos}
+              users={users}
+              setUsers={setUsers}
+            />
+          );
         })}
       </div>
     </div>

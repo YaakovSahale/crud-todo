@@ -2,9 +2,10 @@ import { useState } from "react";
 import styles from "./UserCard.module.css";
 import OtherData from "../OtherData/OtherData";
 
-const UserCard = ({ user, todos }) => {
+const UserCard = ({ user, todos, users, setUsers }) => {
   const [isMouseOverOtherData, setIsMouseOverOtherData] = useState(false);
   const [isTasksComplete, setIsTasksComplete] = useState(false);
+  const [updatedUser, setUpdatedUser] = useState({});
 
   const btnContainer_row = {
     flexDirection: "row",
@@ -27,6 +28,23 @@ const UserCard = ({ user, todos }) => {
     if (totalTasksNum === completedTasks.length) setIsTasksComplete(true);
   };
 
+  const saveUpdates = (e) => {
+    setUpdatedUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const updateHandle = () => {
+    const tempUsers = [...users];
+    tempUsers.find((person, i) => {
+      if (person.id === user.id) {
+        // person = updatedUser;
+        tempUsers[i] = { ...tempUsers[i], ...updatedUser };
+      }
+    });
+    setUsers(tempUsers);
+  };
+
+  const deleteHandle = () => {};
+
   checkIfTasksComplete();
 
   return (
@@ -37,11 +55,21 @@ const UserCard = ({ user, todos }) => {
       <p>ID : {user.id}</p>
       <div className={styles.userDetails}>
         <label>Name : </label>
-        <input type="text" defaultValue={user.name} />
+        <input
+          type="text"
+          name="name"
+          defaultValue={user.name}
+          onChange={(e) => saveUpdates(e)}
+        />
       </div>
       <div className={styles.userDetails}>
         <label>Email :</label>
-        <input type="text" defaultValue={user.email} />
+        <input
+          type="text"
+          name="email"
+          defaultValue={user.email}
+          onChange={(e) => saveUpdates(e)}
+        />
       </div>
       <div
         className={styles.btnContainer}
@@ -58,7 +86,9 @@ const UserCard = ({ user, todos }) => {
         </div>
         {isMouseOverOtherData && <OtherData user={user} />}
         <div className={styles.updateAndDeleteContainer}>
-          <button className={styles.btn}>Update</button>
+          <button className={styles.btn} onClick={updateHandle}>
+            Update
+          </button>
           <button className={styles.btn}>Delete</button>
         </div>
       </div>
