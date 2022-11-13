@@ -1,8 +1,16 @@
 import { useState } from "react";
 import styles from "./UserCard.module.css";
 import OtherData from "../OtherData/OtherData";
+import TodosAndPostsDisplay from "../TodosAndPostsDisplay/TodosAndPostsDisplay";
 
-const UserCard = ({ user, todos, users, setUsers }) => {
+const UserCard = ({
+  user,
+  todos,
+  users,
+  setUsers,
+  idClicked,
+  setIdClicked,
+}) => {
   const [isMouseOverOtherData, setIsMouseOverOtherData] = useState(false);
   const [isTasksComplete, setIsTasksComplete] = useState(false);
   const [updatedUser, setUpdatedUser] = useState({});
@@ -58,53 +66,63 @@ const UserCard = ({ user, todos, users, setUsers }) => {
   checkIfTasksComplete();
 
   return (
-    <article
-      className={styles.card}
-      style={{ border: `0.13em solid ${isTasksComplete ? "green" : "red"} ` }}
-    >
-      <p>ID : {user.id}</p>
-      <div className={styles.userDetails}>
-        <label>Name : </label>
-        <input
-          type="text"
-          name="name"
-          defaultValue={user.name}
-          onChange={(e) => saveUpdates(e)}
-        />
-      </div>
-      <div className={styles.userDetails}>
-        <label>Email :</label>
-        <input
-          type="text"
-          name="email"
-          defaultValue={user.email}
-          onChange={(e) => saveUpdates(e)}
-        />
-      </div>
-      <div
-        className={styles.btnContainer}
-        style={isMouseOverOtherData ? btnContainer_column : btnContainer_row}
+    <div>
+      <article
+        className={styles.card}
+        style={{ border: `0.13em solid ${isTasksComplete ? "green" : "red"} ` }}
       >
-        <div>
-          <button
-            onMouseOver={() => setIsMouseOverOtherData(true)}
-            onClick={() => setIsMouseOverOtherData(false)}
-            className={styles.btn}
+        <p>
+          {" "}
+          <span
+            onClick={() => setIdClicked({ isIdClicked: true, userId: user.id })}
           >
-            Other Data
-          </button>
+            ID :
+          </span>{" "}
+          {user.id}
+        </p>
+        <div className={styles.userDetails}>
+          <label>Name : </label>
+          <input
+            type="text"
+            name="name"
+            defaultValue={user.name}
+            onChange={(e) => saveUpdates(e)}
+          />
         </div>
-        {isMouseOverOtherData && <OtherData user={user} />}
-        <div className={styles.updateAndDeleteContainer}>
-          <button className={styles.btn} onClick={updateHandle}>
-            Update
-          </button>
-          <button className={styles.btn} onClick={deleteHandle}>
-            Delete
-          </button>
+        <div className={styles.userDetails}>
+          <label>Email :</label>
+          <input
+            type="text"
+            name="email"
+            defaultValue={user.email}
+            onChange={(e) => saveUpdates(e)}
+          />
         </div>
-      </div>
-    </article>
+        <div
+          className={styles.btnContainer}
+          style={isMouseOverOtherData ? btnContainer_column : btnContainer_row}
+        >
+          <div>
+            <button
+              onMouseOver={() => setIsMouseOverOtherData(true)}
+              onClick={() => setIsMouseOverOtherData(false)}
+              className={styles.btn}
+            >
+              Other Data
+            </button>
+          </div>
+          {isMouseOverOtherData && <OtherData user={user} />}
+          <div className={styles.updateAndDeleteContainer}>
+            <button className={styles.btn} onClick={updateHandle}>
+              Update
+            </button>
+            <button className={styles.btn} onClick={deleteHandle}>
+              Delete
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
   );
 };
 

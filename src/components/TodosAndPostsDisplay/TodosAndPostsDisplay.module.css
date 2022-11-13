@@ -1,0 +1,16 @@
+.container {
+}
+
+.TodosTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+h3,p {
+  margin: 0;
+}
+
+.completedTaskContainer{
+    display: flex;
+    margin: 0;
+}

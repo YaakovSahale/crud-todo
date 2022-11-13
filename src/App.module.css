@@ -1,8 +1,8 @@
-
-.App{
-
+.App {
+  display: flex;
 }
 
-.cardsContainer{
-    max-width: 50%;
+.cardsContainer {
+  margin-right: 1em;
+  width: 50%;
 }
