@@ -37,6 +37,10 @@ function App() {
     getUsersAndTodos();
   }, []);
 
+  useEffect(() => {
+    setSearchDisplay(users)
+  }, [users]);
+
   return (
     <div className={styles.App}>
       <div className={styles.cardsContainer}>

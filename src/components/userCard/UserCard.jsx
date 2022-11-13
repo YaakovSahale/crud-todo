@@ -43,7 +43,17 @@ const UserCard = ({ user, todos, users, setUsers }) => {
     setUsers(tempUsers);
   };
 
-  const deleteHandle = () => {};
+  const deleteHandle = () => {
+    const tempUsers = [...users];
+    tempUsers.find((person, i) => {
+      if (person?.id === user?.id) {
+        // person = updatedUser;
+        tempUsers.splice(i, 1);
+        console.log(tempUsers);
+      }
+    });
+    setUsers(tempUsers);
+  };
 
   checkIfTasksComplete();
 
@@ -89,7 +99,9 @@ const UserCard = ({ user, todos, users, setUsers }) => {
           <button className={styles.btn} onClick={updateHandle}>
             Update
           </button>
-          <button className={styles.btn}>Delete</button>
+          <button className={styles.btn} onClick={deleteHandle}>
+            Delete
+          </button>
         </div>
       </div>
     </article>
