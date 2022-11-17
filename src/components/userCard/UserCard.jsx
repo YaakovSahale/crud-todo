@@ -1,19 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./UserCard.module.css";
 import OtherData from "../OtherData/OtherData";
-import TodosAndPostsDisplay from "../TodosAndPostsDisplay/TodosAndPostsDisplay";
 
-const UserCard = ({
-  user,
-  todos,
-  users,
-  setUsers,
-  idClicked,
-  setIdClicked,
-}) => {
+const UserCard = ({ user, todos, users, setUsers, setIdClicked }) => {
   const [isMouseOverOtherData, setIsMouseOverOtherData] = useState(false);
   const [isTasksComplete, setIsTasksComplete] = useState(false);
-  const [updatedUser, setUpdatedUser] = useState({});
+  const [updatedUser, setUpdatedUser] = useState({
+    name: "",
+    email: "",
+    address: { city: "", zipcode: "" },
+  });
 
   const btnContainer_row = {
     flexDirection: "row",
@@ -24,19 +20,25 @@ const UserCard = ({
     flexDirection: "column",
   };
 
-  const checkIfTasksComplete = () => {
-    let totalTasksNum = 0;
-    const completedTasks = todos.map((todo) => {
-      if (todo.userId !== user.id) return;
-      totalTasksNum++;
-      if (!todo.completed) return;
-      return true;
-    });
-
-    if (totalTasksNum === completedTasks.length) setIsTasksComplete(true);
-  };
+  useEffect(() => {
+    const checkIfTasksComplete = () => {
+      const tempIsTasksComplete = todos.find((todo) => {
+        if (todo.userId == user.id) {
+          if (!todo.completed) {
+            return false;
+          }
+        }
+      });
+    };
+    // checkIfTasksComplete();
+  }, []);
 
   const saveUpdates = (e) => {
+    if (e.target.name === "city" || "zipcode") {
+      setUpdatedUser((prev) => ({
+        ...prev, address: { ...address, [e.target.name]: e.target.value },
+      }));
+    }
     setUpdatedUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -63,7 +65,7 @@ const UserCard = ({
     setUsers(tempUsers);
   };
 
-  checkIfTasksComplete();
+  // console.log(isTasksComplete);
 
   return (
     <div>
@@ -111,7 +113,9 @@ const UserCard = ({
               Other Data
             </button>
           </div>
-          {isMouseOverOtherData && <OtherData user={user} />}
+          {isMouseOverOtherData && (
+            <OtherData user={user} saveUpdates={saveUpdates} />
+          )}
           <div className={styles.updateAndDeleteContainer}>
             <button className={styles.btn} onClick={updateHandle}>
               Update

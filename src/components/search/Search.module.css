@@ -1,5 +1,8 @@
+* {
+  box-sizing: border-box;
+}
 
-.searchContainer{
-    display: flex;
-    justify-content: space-between;
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
 }

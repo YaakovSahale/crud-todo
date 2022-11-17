@@ -54,11 +54,11 @@ function App() {
         {searchDisplay.map((user) => {
           return (
             <UserCard
+              key={user.id}
               user={user}
               todos={todos}
               users={users}
               setUsers={setUsers}
-              idClicked={idClicked}
               setIdClicked={setIdClicked}
             />
           );
